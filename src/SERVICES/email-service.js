@@ -49,9 +49,23 @@ const updateTicket = async(ticketId, data) => {
     }
 }
 
+const subscribeEvents = async (payload) => {
+    const data1 = payload.data1;
+    const data2 = payload.data2;
+    if(payload.service == "CREATE_TICKET" && payload.mail == "SEND_MAIL"){
+        
+        await createNotification(data1);
+        await createNotification(data2);
+
+    }
+    
+    
+}
+
 module.exports = {
     sendBasicEmail,
     createNotification,
     fetchpendingemails,
-    updateTicket
+    updateTicket,
+    subscribeEvents
 }
